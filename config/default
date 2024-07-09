@@ -1,0 +1,33 @@
+server {
+    listen 80;
+    server_name 192.168.1.249;
+
+    # ROOT
+    location / {
+        root /home/mike/web;
+        index index.html;
+        add_header 'Access-Control-Allow-Origin' '*';
+        try_files $uri $uri/ =404;
+    }
+
+    # PHP
+    location ~ \.php$ {
+        root /home/mike/web/php;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    # NODE JS
+    location /node {
+        proxy_pass http://127.0.0.1:3000; # APP PORT
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        add_header 'Access-Control-Allow-Origin' '*';
+    }
+}
