@@ -10,7 +10,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # INSTALL PACKAGES
-sudo apt install neofetch htop sqlite3 nodejs php php-fpm python3 python3-pip vim git make nginx mariadb-server -y
+sudo apt install neofetch htop sqlite3 nodejs php php-fpm python3 python3-pip vim git make nginx mariadb-server cmake -y
 
 # INSTALL MYSQL
 sudo mysql_secure_installation
