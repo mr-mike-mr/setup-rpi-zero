@@ -10,7 +10,12 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # INSTALL PACKAGES
-sudo apt install neofetch htop sqlite3 nodejs php php-fpm python3 python3-pip vim git make nginx mariadb-server cmake -y
+sudo apt install neofetch htop sqlite3 nodejs php php-fpm python3 python3-pip vim neovim git make nginx mariadb-server cmake -y
+
+# INSTALL LAZYVIM
+mkdir /home/"${USER}"/.config/nvim
+git clone https://github.com/LazyVim/starter /home/"${USER}"/.config/nvim
+rm -rf /home/"${USER}"/.config/nvim/.git
 
 # INSTALL MYSQL
 sudo mysql_secure_installation
